@@ -39,3 +39,4 @@ db
 .eslintrc.json
 .history/
 .vscode/
+pgadmin4_data/
