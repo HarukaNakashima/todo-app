@@ -1,6 +1,6 @@
-FROM ruby:slim
+ FROM ruby:slim
 
-LABEL Name=todoposgrever Version=0.0.1
+LABEL Name=todoapp Version=0.0.1
 
 
 # throw errors if Gemfile has been modified since Gemfile.lock
@@ -12,4 +12,4 @@ COPY . /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-CMD ["ruby", "todoposgrever.rb"]
+CMD ["ruby", "todoapp.rb"]
