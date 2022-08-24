@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+//クロスオリジン対策
 var cors = require('cors');
 //ロガーとしてwinstonと紐付け
 var logger = require('./utils/logger');
@@ -23,11 +24,19 @@ app.use(express.json());//JSON形式に変換する
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//クロスオリジン対策
 app.use(cors({
   origin: 'http://localhost:3000/', //アクセス許可するオリジン
   credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
   optionsSuccessStatus: 200 //レスポンスstatusを200に設定
 }));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
