@@ -11,7 +11,7 @@ const App = () => {
     
     <main>
       <h1>My Todo</h1>
-      <a>新規登録</a>
+      <a href="/components/taskForm">新規登録</a>
       <TaskList />
     </main>
     </>
