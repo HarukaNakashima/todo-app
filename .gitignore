@@ -40,3 +40,5 @@ db
 .history/
 .vscode/
 pgadmin4_data/
+logs/all.log
+logs/error.log
