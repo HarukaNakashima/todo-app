@@ -1,6 +1,9 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter, Route } from "next/router";
 import { useState } from "react";
 import TaskList from "./components/taskList"
+
 const App = () => {
 
   return (
@@ -10,8 +13,10 @@ const App = () => {
     </Head>
     
     <main>
-      <h1>My Todo</h1>
-      <a href="/components/taskForm">新規登録</a>
+      <h1>My Todo Topページ</h1>
+      <Link href="/components/taskForm">
+        <a >新規登録</a>
+      </Link>
       <TaskList />
     </main>
     </>
