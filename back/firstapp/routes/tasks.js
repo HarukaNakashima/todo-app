@@ -28,16 +28,16 @@ router.get('/:id', async (req, res) => {
     const singleTask = await prisma.task.findUnique({
         where: {id: Number(id)},
       });
-      if(!singleTask) {
+      //指定されたidがなかったら、サーバーエラー５００ではなく、以下の表示をさせたい。未確認。
+      if(!{id}) {
         return res.status(404).send(`id:${singleTask.id} is not exit!`);
-      }
+      } 
       console.log(singleTask);
       res.status(200).send(singleTask);
       logger.info(`GET singleTask id:${singleTask.id}`);//インフォログ表示確認済み
   } catch (e) {
     res.status(500).send(e);//500:サーバー起因エラー
     logger.error('GET singleTask ');
-    // logger.error(`GET task id:${result.id}`);
   }
 });
   
