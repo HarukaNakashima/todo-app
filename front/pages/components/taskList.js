@@ -10,6 +10,8 @@ const baseURL = "http://localhost:4000/tasks";
 
 //登録されたtodoリストの表示
 export default function TaskList () {
+    //routerの取得
+    const router = useRouter();
     //useStateの宣言
     //tasks:状態変数、setTasks:状態変数を健康するための関数、React.useState(状態変数の初期値)
     const [tasks, setTasks] = React.useState([]);
@@ -21,39 +23,43 @@ export default function TaskList () {
             setTasks(response.data);
             console.log("response.data", response.data);//[{...}, {...}]の形でAPI情報が入ってきている
         });
-    //第2引数に値の配列を指定 => マウント時と指定された値に変化があった場合のみに第１引数の関数を実行。
-    // todoが追加され、tasksのテーブルに変化　=> 最後リクエストして、リスポンスを表示
-    // (保留）第２引数にtasksを入れると、どんどんコンソールにレンダリングされる！（サーバーが大変そう！）
+        //第2引数に値の配列を指定 => マウント時と指定された値に変化があった場合のみに第１引数の関数を実行。
+        // todoが追加され、tasksのテーブルに変化　=> 最後リクエストして、リスポンスを表示
+        // (保留）第２引数にtasksを入れると、どんどんコンソールにレンダリングされる！（サーバーが大変そう！）
     }, []);
     if(!tasks) return null;
-
+    
     //todoの中身を一つずつ取り出してそれぞれを別々に表示させる。好きな食べ物の表示方法を参考にする。
     const useTasks = tasks.map((task) => {
-
+        
         console.log("task.completed", task.completed);
         //データの完了未完了
-        const completed = () => {
-            if (task.completed === false) {
-                return (
-                    <p>未完了：がんばれ〜！</p>
-                );
-            } else if (task.completed === ture) {
-                return (
-                    <p>完了：やったね〜！</p>
-                );
-            }
-        };
-        if(task === undefined) {
-            return (
-                <p>現在、todoはないよ〜！</p>
-            )};
+        // const completed = () => {
+        //     if (task.completed === false) {
+        //         return (
+        //             <p>未完了：がんばれ〜！</p>
+        //         );
+        //     } else if (task.completed === ture) {
+        //         return (
+        //             <p>完了：やったね〜！</p>
+        //         );
+        //     }
+        // };
+        // if(task === undefined) {
+        //     return (
+        //         <p>現在、todoはないよ〜！</p>
+        //     )};
         return (
             <div className="task-list" key={task.id}>
             <p>categoryId :{task.categoryId}</p>
-            <Link href={`/components/${task.id}`}>
-              <a  >{task.title}</a>
+            <Link as={`/components/${task.id}`}
+            href={{
+                   pathname: `/components/[id]`,
+                   query:task.id
+            }}>
+              <a>{task.title}</a>
             </Link>
-            {completed}
+            {/* {completed} */}
            </div>
         )
     });
