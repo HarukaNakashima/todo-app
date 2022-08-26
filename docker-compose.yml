@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    build: .
+    build: ./front
     volumes:
       - ./front:/usr/src/app
     working_dir: /usr/src/app
@@ -19,6 +19,7 @@ services:
     - ./back/firstapp/.env
    ports:
     - "5432:5432"
+    
   #  networks:
   #   - backend
   middle:
@@ -27,9 +28,11 @@ services:
     expose:
       - 3000
       - 9229
+      - 5555
     ports:
       - 4000:4000 #8000がホストのポート番号3000がコンテナのポート番号 
       - 9229:9229
+      - 5555:5555
     volumes:
       - ./back:/usr/src/app
     working_dir: /usr/src/app
