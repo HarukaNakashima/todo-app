@@ -6,7 +6,7 @@ const baseURL = "http://localhost:4000/tasks/:id/completed";
 export default function CompleteButton () {
     
     const [completed, setCompleted] = React.useState(false);
-    console.log("completed : ", completed);//
+    // console.log("completed : ", completed);
     
     //APIのPOST情報の取得(complete: false → complete: ture)
     
