@@ -25,11 +25,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //クロスオリジン対策
-app.use(cors({
-  origin: 'http://localhost:3000/', //アクセス許可するオリジン
-  credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
-  optionsSuccessStatus: 200 //レスポンスstatusを200に設定
-}));
+// app.use(cors({
+//   origin: 'http://localhost:3000/', //アクセス許可するオリジン
+//   credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
+//   optionsSuccessStatus: 200 //レスポンスstatusを200に設定
+// }));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
