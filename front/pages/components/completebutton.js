@@ -1,26 +1,26 @@
 import React from "react"
 import axios from "axios"
+import { useRouter } from "next/router";
 
-const baseURL = "http://localhost:4000/tasks/:id/completed";
+const baseURL = "http://localhost:4000/tasks";
+
 //taskListの完了未完了をボタンで更新する関数
 export default function CompleteButton () {
-    
-    const [completed, setCompleted] = React.useState(false);
-    // console.log("completed : ", completed);
-    
-    //APIのPOST情報の取得(complete: false → complete: ture)
+    //routerの取得
+    const router = useRouter();
     
     //<button>タグに設定するupDateState関数
     const upDateState = () => {
-      axios.put(baseURL).then((response) => {
-        setCompleted(response.data);
+      //APIへPOSTリクエスト(complete: false → complete: ture)
+      axios.put(`${baseURL}/${router.query.id}/completed`).then((response) => {
+        console.log("response",response);
+        console.log(`${response.data.completed}に更新しました！`);
       });
-      console.log("response.data:", response.data);
     };
 
     return (
         <div>
-            <button onClick={{upDateState}}>完了</button>
+            <button onClick={upDateState}>完了</button>
         </div>
     );
 }
