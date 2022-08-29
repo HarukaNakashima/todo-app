@@ -1,26 +1,57 @@
+/* _app.jsにインポートされ、すべてのページと要素に反映される */
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  text-align: center;
+  
+}
+h1 {
+  background-color:#f7c6bd;
+}
+div {
+  margin-bottom: 10px; 
 }
 
 a {
+  /* inherit 親のスタイルを継承 */
   color: inherit;
-  text-decoration: none;
+  /* テキストの装飾 */
+  text-decoration: underline;
 }
-
+.add-new-task {
+  background-color:  #e2eba3;
+}
+.back-home {
+  background-color:  #e2eba3;
+}
+.h3 {
+  background-color: #eaf6fd;
+}
+.task-input {
+  border:2px solid;
+}
+.show-new-task {
+  border:2px solid;
+}
+.single-task {
+  border: 2px solid;
+  background-color: #f6f0cc;
+}
+.task-container {
+  text-align: center;
+  
+  /* padding: auto;
+  margin-bottom: 10px;  */
+}
+.task-list {
+  border: 2px solid;
+  background-color: #f6f0cc;
+}
 * {
+  /* 親要素から小要素がはみ出さない設定 */
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
